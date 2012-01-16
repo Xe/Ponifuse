@@ -41,4 +41,8 @@ Oh, as of when I updated this part last, Derp has not gotten me back for the Pon
 
 More to come.
 
-[](/rajlie "I'm not a brony, no sir; I just like watching my little pony")  [](/c06 "Shaddup you, I... I... can watch what I want! You just shut up.") [](/cheerilee "well, okay... but only on weekends, and not like those other bronies, and no one has to know, and...")  [](/rc18 "Yes, I suppose I am a brony")  [](/c24 "Pooooooniess....") 
+[](/rajlie "I'm not a brony, no sir; I just like watching my little pony")  
+[](/c06 "Shaddup you, I... I... can watch what I want! You just shut up.") 
+[](/cheerilee "well, okay... but only on weekends, and not like those other bronies, and no one has to know, and...")  
+[](/rc18 "Yes, I suppose I am a brony")  
+[](/c24 "Pooooooniess....") 
