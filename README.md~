@@ -2,7 +2,7 @@ Ponifuse is an **experimental** project in applying the text-replacement rules o
 
 ---
 
-Story time!
+Story time!  This is a modified version of the reddit post that started this all.
 
 So, about a month or so ago, one of my floormates, Derp called me "gay" for liking and watching My Little Pony, right? He was met with the full force of Love and Tolerance. eg:
 
@@ -33,6 +33,8 @@ The full list of replacements is in `src/list.txt` if you want to see all of the
 
 Special thanks to stillunmaned on irc.ponychat.net for helping me get the basics of the replacement logic hammered down.
 
+This project is only intended for fun, testing, and possibly being used in pranks against people you ~~hate~~ Love and Tolerate.
 
+Oh, as of when I updated this part last, Derp has not gotten me back for the Ponify prank yet.  As he does not use Linux, I cannot test the effectiveness of this project on a ~~victim~~ voulnteer.   I will post details when he does get me back.  If I die, please order me a pizza.
 
 More to come.
