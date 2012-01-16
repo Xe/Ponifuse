@@ -19,4 +19,8 @@ This is the implementation of that idea.
 
 ---
 
+Special thanks to stillunmaned on irc.ponychat.net for helping me get the basics of the replacement logic hammered down.
+
+
+
 More to come.
