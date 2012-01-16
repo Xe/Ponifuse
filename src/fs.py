@@ -3,6 +3,10 @@
 import os, sys, ponify, fuse, time
 from fuse import Fuse
 
+def listdir_fullpath(d):
+    #http://stackoverflow.com/questions/120656/directory-listing-in-python
+    return [os.path.join(d, f) for f in os.listdir(d)]
+
 def gen_stats_from_real_file(fpath):
     res = PonifuseStat()
     
@@ -34,7 +38,7 @@ class PonifuseStat(fuse.Stat):
         self.st_size = 0
         self.st_atime = 0
         self.st_mtime = 0
-        self.st_ctime = 0
+        self.st_ctime = 0        
 
 class Ponifuse(Fuse):
     def __init__(self, *args, **kw):
@@ -44,8 +48,19 @@ class Ponifuse(Fuse):
         self.source_folder = "/home/sam/Documents/nukable"
         
     def getattr(self, path):
-        st = PonifuseStat()
+        st = gen_stats_from_real_file(os.join(self.source_folder, path))
         
         print path
         
+        return st
+    
+    def readdir(self, path, offset):
+        dirents = [ '.', '..' ]
+        
+        dirents.extend(listdir_fullpath(os.join(self.source_folder, path))
+        
+        for r in dirents:
+            yield fuse.Direntry(r)
+    
+    def mknod(self, path, mode, dev):
         
