@@ -3,6 +3,25 @@
 import os, sys, ponify, fuse, time
 from fuse import Fuse
 
+fuse.fuse_python_api = (0, 2)
+
+source_folder = "/home/sam/Documents/nukable"
+
+def is_ignored(path):
+    ignored = None
+    
+    try:
+        ignored = open(os.path.join(source_folder, ".ponyignore"), "r").read()
+    except IOError as e:
+        print "No .ponyignore, adding one"
+        ignored = open(os.path.join(source_folder, ".ponyignore"), "w")
+        ignored.write(".c\n.py\n.pl\n.java\n.clj\n.javac\n.exe\n")
+    
+    if path in ignored:
+        return True
+    else:
+        return False
+
 def listdir_fullpath(d):
     #http://stackoverflow.com/questions/120656/directory-listing-in-python
     return [os.path.join(d, f) for f in os.listdir(d)]
@@ -57,10 +76,39 @@ class Ponifuse(Fuse):
     def readdir(self, path, offset):
         dirents = [ '.', '..' ]
         
-        dirents.extend(listdir_fullpath(os.join(self.source_folder, path))
+        dirents.extend(listdir_fullpath(os.join(self.source_folder, path)))
         
         for r in dirents:
             yield fuse.Direntry(r)
     
     def mknod(self, path, mode, dev):
-        
+        pass
+    
+    
+def main():
+    
+    usage = """
+Ponify files transparently.
+
+""" + Fuse.fusage
+
+    server = Ponifuse(version="%prog " + fuse.__version__,
+                 usage=usage,
+                 dash_s_do='setsingle')
+
+    server.parser.add_option(mountopt="root", metavar="PATH", default='/',
+     help="mirror filesystem from under PATH [default: %default]")
+    server.parse(values=server, errex=1)
+
+    try:
+        if server.fuse_args.mount_expected():
+            os.chdir(server.root)
+    except OSError:
+        print >> sys.stderr, "can't enter root of underlying filesystem"
+        sys.exit(1)
+
+    server.main()
+
+
+if __name__ == '__main__':
+    main()

@@ -1,4 +1,4 @@
-
+import re
 
 list_of_finds = eval(open("list.txt", "r").read())
 
@@ -16,3 +16,10 @@ def undo_replace(text, replacements=list_of_finds):
 
         return text
 
+if __name__ == "__main__":
+    
+    test_string = [x[0] for x in list_of_finds]
+    
+    print test_string
+    
+    print replace(str(test_string))
