@@ -1,10 +1,12 @@
 
 
-list_of_words = list(open("list.txt", "r").read())
+list_of_words = eval(open("list.txt", "r").read())
 
 def replace(text, replacements=list_of_words):
+	print "given:", text
 	for number in range(len(replacements)):
 		word = replacements[number][0]
+		print word, "tried"
 		if word in text:
 			text.replace(word, replacements[number][1])
 			
