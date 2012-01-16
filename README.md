@@ -23,8 +23,6 @@ My next idea? Make Ponify modify files at load-time in the linux kernel (or poss
 
 This is my implementation of that idea, in the form of a fuse module. 
 
-Oh, sadly, because I am the only linux user on the CS floor (**WHY!?**) at the college *(Eastern Washington University)* I go to.
-
 ---
 
 Implementation details:

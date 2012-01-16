@@ -1,5 +1,7 @@
 Ponifuse is an **experimental** project in applying the text-replacement rules of Ponify to file transparently as they are written and read.
 
+**THIS DOES *NOT* WORK YET**
+
 ---
 
 Story time!  This is a modified version of the reddit post that started this all.
