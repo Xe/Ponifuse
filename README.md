@@ -1,4 +1,4 @@
-Ponifuse is an experimental project in applying the text-replacement rules of Ponify to file transparently as they are written.
+Ponifuse is an experimental project in applying the text-replacement rules of Ponify to file transparently as they are written and read.
 
 So, about a month or so ago, one of my floormates, Derp called me "gay" for liking and watching My Little Pony, right? He was met with the full force of Love and Tolerance. eg:
 
