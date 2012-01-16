@@ -17,9 +17,11 @@ and he gave up from there (pro tip: love and tolerance beats all).
 
 So, about a week ago *(from date of writing)*, I installed ponify on his browesr and completely hid it. Today he found out the magic. And I found out he thought the internet was broken, and he went over to my desktop and laptop to confirm this.  Oh, I should mention, I have ponify on both my boxes.  I verified to him that he was searching for "The Filly With The Dragon Cutie Mark", and not "The Girl With the Dragon Tattoo".  The look on his face as he had a lapse of sanity was *so* worth it.  
 
-My next idea? Make Ponify modify files at load-time in the linux kernel (or possibly a FUSE module) to smartly ponify files at load-time by transparently mounting the ponifuse module at login.
+My next idea? Make Ponify modify files at load-time in the linux kernel (or possibly a FUSE module) to smartly ponify files at load-time by transparently mounting the ponifuse module at login (okay, this part is not my job, but it is an example case).
 
-This is the implementation of that idea, in the form of a fuse module. 
+This is my implementation of that idea, in the form of a fuse module. 
+
+Oh, sadly, because I am the only linux user on the CS floor (**WHY!?**) at the college *(Eastern Washington University)* I go to.
 
 ---
 
@@ -35,6 +37,6 @@ Special thanks to stillunmaned on irc.ponychat.net for helping me get the basics
 
 This project is only intended for fun, testing, and possibly being used in pranks against people you ~~hate~~ Love and Tolerate.
 
-Oh, as of when I updated this part last, Derp has not gotten me back for the Ponify prank yet.  As he does not use Linux, I cannot test the effectiveness of this project on a ~~victim~~ voulnteer.   I will post details when he does get me back.  If I die, please order me a pizza.
+Oh, as of when I updated this part last, Derp has not gotten me back for the Ponify prank yet.  As he does not use Linux, I cannot test the effectiveness of this project on a ~~victim~~ voulnteer.   I will post details when he does get me back.  If I die, please order me a pizza. [](/ppfear "I don't want to die though.")
 
 More to come.

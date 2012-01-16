@@ -27,7 +27,7 @@ def gen_stats_from_real_file(fpath):
     return res
 
 class PonifuseStat(fuse.Stat):
-    """Pretty much verbatum from fdiff.py"""
+    """Pretty much verbatum from fdiff.py, as there is no other way to do it"""
     def __init__(self):
         self.st_mode = 0
         self.st_ino = 0
