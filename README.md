@@ -33,9 +33,9 @@ The full list of replacements is in `src/list.txt` if you want to see all of the
 
 ---
 
-Special thanks to stillunmaned on irc.ponychat.net for helping me get the basics of the replacement logic hammered down.
+Special thanks to stillunnamed on irc.ponychat.net for helping me get the basics of the replacement logic hammered down.  Also thanks to [Justin Workman](/http://github.com/xtagon) for talking me into this.
 
-This project is only intended for fun, testing, and possibly being used in pranks against people you ~~hate~~ Love and Tolerate.
+This project is only intended for fun, testing, and possibly being used in pranks against people you ~~hate~~ er... Love and Tolerate.
 
 Oh, as of when I updated this part last, Derp has not gotten me back for the Ponify prank yet.  As he does not use Linux, I cannot test the effectiveness of this project on a ~~victim~~ voulnteer.   I will post details when he does get me back.  If I die, please order me a pizza. [](/ppfear "I don't want to die though.")
 
@@ -46,3 +46,5 @@ More to come.
 [](/cheerilee "well, okay... but only on weekends, and not like those other bronies, and no one has to know, and...")  
 [](/rc18 "Yes, I suppose I am a brony")  
 [](/c24 "Pooooooniess....") 
+
+[](/ppfear "why do they call it a hack saw? It doesn’t hack; hacking is what I was doing with the knife. This is a saw. I don’t get it.")
