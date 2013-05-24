@@ -5,7 +5,7 @@ from fuse import Fuse
 
 fuse.fuse_python_api = (0, 2)
 
-source_folder = "/home/sam/Documents/nukable"
+source_folder = "/home/niichan/tmp/nukable"
 
 def is_ignored(path):
     ignored = None
@@ -63,8 +63,8 @@ class Ponifuse(Fuse):
     def __init__(self, *args, **kw):
         Fuse.__init__(self, *args, **kw)
         
-        self.mount_folder = "/home/sam/Mounts/ponifuse"
-        self.source_folder = "/home/sam/Documents/nukable"
+        self.mount_folder = "/home/niichan/mounts/ponifuse"
+        self.source_folder = source_folder
         
     def getattr(self, path):
         st = gen_stats_from_real_file(os.join(self.source_folder, path))
