@@ -1,6 +1,7 @@
 import re
+import json
 
-list_of_finds = eval(open("list.txt", "r").read())
+list_of_finds = json.load(open("list.json", "r"))
 
 def replace(text, replacements=list_of_finds):
 	for number in range(len(replacements)):
