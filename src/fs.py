@@ -1,26 +1,37 @@
+#!/usr/bin/env python
 #Code inspired from dfiff
+#
+# Makes a FUSE filesystem, replacing pony words with pony-themed words
+#
 
 import os, sys, ponify, fuse, time
+import os.path
 from fuse import Fuse
 
 fuse.fuse_python_api = (0, 2)
 
-source_folder = "/home/niichan/tmp/nukable"
+source_folder = os.path.join(os.path.expanduser("~"), "tmp", "nukable")
 
 def is_ignored(path):
     ignored = None
-    
+
     try:
         ignored = open(os.path.join(source_folder, ".ponyignore"), "r").read()
     except IOError as e:
         print "No .ponyignore, adding one"
-        ignored = open(os.path.join(source_folder, ".ponyignore"), "w")
-        ignored.write(".c\n.py\n.pl\n.java\n.clj\n.javac\n.exe\n")
-    
-    if path in ignored:
-        return True
-    else:
-        return False
+        ignored = ".c\n.py\n.pl\n.java\n.clj\n.javac\n.exe\n"
+        fout = open(os.path.join(source_folder, ".ponyignore"), "w")
+        fout.write(ignored)
+        fout.close()
+
+    suffixes = ignored.split("\n")
+
+    for suffix in suffixes:
+        if len(suffix) == 0:
+            continue
+        if path[-len(suffix):] == suffix:
+            return True
+    return False
 
 def listdir_fullpath(d):
     #http://stackoverflow.com/questions/120656/directory-listing-in-python
@@ -28,10 +39,10 @@ def listdir_fullpath(d):
 
 def gen_stats_from_real_file(fpath):
     res = PonifuseStat()
-    
+
     #http://stackoverflow.com/questions/237079/how-to-get-file-creation-modification-date-times-in-python
     (mode, ino, dev, nlink, uid, gid, size, atime, mtime, ctime) = os.stat(fpath)
-    
+
     res.st_mode = mode
     res.st_ino = ino
     res.st_dev = dev
@@ -42,7 +53,7 @@ def gen_stats_from_real_file(fpath):
     res.st_atime = atime
     res.st_mtime = mtime
     res.st_ctime = ctime
-    
+
     return res
 
 class PonifuseStat(fuse.Stat):
@@ -57,36 +68,57 @@ class PonifuseStat(fuse.Stat):
         self.st_size = 0
         self.st_atime = 0
         self.st_mtime = 0
-        self.st_ctime = 0        
+        self.st_ctime = 0
 
 class Ponifuse(Fuse):
     def __init__(self, *args, **kw):
         Fuse.__init__(self, *args, **kw)
-        
-        self.mount_folder = "/home/niichan/mounts/ponifuse"
+
+        self.mount_folder = os.path.join(os.path.expanduser("~"), "mounts", "ponifuse")
         self.source_folder = source_folder
-        
+
+    def _sourcepath(self, path):
+        if path[:1] == "/":
+            path = path[1:]
+        return os.path.join(self.source_folder, path)
+
     def getattr(self, path):
-        st = gen_stats_from_real_file(os.join(self.source_folder, path))
-        
-        print path
-        
+        real_path = self._sourcepath(path)
+        st = gen_stats_from_real_file(real_path)
+        # update size so whole file can be read
+        if not is_ignored(real_path):
+            if os.path.isfile(real_path):
+                st.st_size = len(self._read(real_path))
         return st
-    
+
     def readdir(self, path, offset):
         dirents = [ '.', '..' ]
-        
-        dirents.extend(listdir_fullpath(os.join(self.source_folder, path)))
-        
+
+        dirents.extend(os.listdir(self._sourcepath(path)))
+
         for r in dirents:
             yield fuse.Direntry(r)
-    
+
+    def _read(self, path):
+        fin = open(path, "r")
+        contents = fin.read()
+        fin.close()
+        if not is_ignored(path):
+            contents = ponify.replace(contents)
+        return contents
+
+    def read(self, path, leng, offset):
+        realpath = self._sourcepath(path)
+        contents = self._read(realpath)
+        return contents[offset:offset+leng]
+
+
     def mknod(self, path, mode, dev):
         pass
-    
-    
+
+
 def main():
-    
+
     usage = """
 Ponify files transparently.
 
